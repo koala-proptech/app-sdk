@@ -18,7 +18,7 @@ type NotificationMessage struct {
 	InstanceId string `json:"instance_id,omitempty"`
 }
 
-func (c *Client) CreateNotification(ctx context.Context, req RequestCreateNotificationMessage) (*Response, error) {
+func (c *Client) CreateNotification(ctx context.Context, token string, req RequestCreateNotificationMessage) (*Response, error) {
 	url := fmt.Sprintf("%s/notifications/internal/messages", c.url)
-	return c.walk(http.MethodPost, url, c.token, req)
+	return c.walk(http.MethodPost, url, token, req)
 }
