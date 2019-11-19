@@ -12,6 +12,7 @@ type RequestCreateNotificationMessage struct {
 }
 
 type NotificationMessage struct {
+	Id         string `json:"id,omitempty"`
 	Message    string `json:"message,omitempty"`
 	Title      string `json:"title,omitempty"`
 	Type       int32  `json:"type,omitempty"`
