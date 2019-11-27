@@ -23,3 +23,8 @@ func (c *Client) CreateNotification(ctx context.Context, token string, req Reque
 	url := fmt.Sprintf("%s/notifications/internal/messages", c.url)
 	return c.walk(http.MethodPost, url, token, req)
 }
+
+func (c *Client) NotificationList(ctx context.Context, token string, userID string) (*Response, error) {
+	url := fmt.Sprintf("%s/notifications/internal/options?user_id=%s", c.url, userID)
+	return c.walk(http.MethodGet, url, token, nil)
+}
