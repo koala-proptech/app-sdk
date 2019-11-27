@@ -1,4 +1,4 @@
-module github.com/ndv6/business-sdk
+module github.com/ndv6/app-sdk
 
 go 1.12
 
