@@ -87,18 +87,6 @@ func (c *Client) request(r *http.Request) (*Response, error) {
 	return &rs, nil
 }
 
-func (c *Client) walk(method, url, token string, payload interface{}) (resp *Response, err error) {
-	resp, err = c.talk(method, url, token, payload)
-	if err != nil {
-		return
-	}
-	if http.StatusUnauthorized == resp.Status {
-		c.token = ""
-		return c.walk(method, url, token, payload)
-	}
-	return
-}
-
 func (c *Client) talk(method, url, token string, payload interface{}) (*Response, error) {
 	var ir io.Reader
 	if nil != payload {
@@ -114,4 +102,3 @@ func (c *Client) talk(method, url, token string, payload interface{}) (*Response
 	}
 	return c.request(r)
 }
-
