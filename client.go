@@ -19,9 +19,9 @@ type (
 	}
 	Option func(*Client)
 	Client struct {
-		uid, token, clientId, url string
-		httpClient                httpClient
-		uriService                *Service
+		uid, clientId, url string
+		httpClient         httpClient
+		uriService         *Service
 	}
 	Service struct {
 		Booking string `json:"booking"`
