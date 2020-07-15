@@ -26,21 +26,21 @@ type AppSettingGroup struct {
 }
 
 type AppSettingGroupItem struct {
-	Key   string   `json:"key,omitempty"`
-	Value string   `json:"value,omitempty"`
+	Key   string `json:"key,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 func (c *Client) CreateNotification(ctx context.Context, token string, req RequestCreateNotificationMessage) (*Response, error) {
 	url := fmt.Sprintf("%s/notifications/internal/messages", c.url)
-	return c.walk(http.MethodPost, url, token, req)
+	return c.talk(http.MethodPost, url, token, req)
 }
 
 func (c *Client) NotificationList(ctx context.Context, token string, userID string) (*Response, error) {
 	url := fmt.Sprintf("%s/notifications/internal/options?user_id=%s", c.url, userID)
-	return c.walk(http.MethodGet, url, token, nil)
+	return c.talk(http.MethodGet, url, token, nil)
 }
 
 func (c *Client) NotificationOption(ctx context.Context, token string, userID string) (*Response, error) {
 	url := fmt.Sprintf("%s/settings/internal/settings?user_id=%s", c.url, userID)
-	return c.walk(http.MethodGet, url, token, nil)
+	return c.talk(http.MethodGet, url, token, nil)
 }
