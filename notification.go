@@ -17,6 +17,7 @@ type NotificationMessage struct {
 	Title      string `json:"title,omitempty"`
 	Type       int32  `json:"type,omitempty"`
 	InstanceId string `json:"instance_id,omitempty"`
+	CreatedAt  int64  `json:"created_at,omitempty"`
 }
 
 type AppSettingGroup struct {
