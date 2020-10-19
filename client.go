@@ -2,6 +2,7 @@ package apps_sdk
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"net/http"
@@ -30,12 +31,12 @@ type (
 		Code    string            `json:"code"`
 		Message string            `json:"message"`
 		Reasons map[string]string `json:"reasons"`
-		Details []interface{}     `json:"details, omitempty"`
+		Details []interface{}     `json:"details,omitempty"`
 	}
 	Response struct {
 		RequestID string                 `json:"request_id"`
 		Status    int                    `json:"status"`
-		Content   map[string]interface{} `json:"content, omitempty"`
+		Content   map[string]interface{} `json:"content,omitempty"`
 		Error     *ErrorResponse         `json:"error,omitempty"`
 	}
 )
@@ -87,7 +88,7 @@ func (c *Client) request(r *http.Request) (*Response, error) {
 	return &rs, nil
 }
 
-func (c *Client) talk(method, url, token string, payload interface{}) (*Response, error) {
+func (c *Client) talk(ctx context.Context, method, url, token string, payload interface{}) (*Response, error) {
 	var ir io.Reader
 	if nil != payload {
 		b, err := json.Marshal(payload)
@@ -100,5 +101,5 @@ func (c *Client) talk(method, url, token string, payload interface{}) (*Response
 	if err != nil {
 		return nil, err
 	}
-	return c.request(r)
+	return c.request(r.WithContext(ctx))
 }
