@@ -1,4 +1,4 @@
-module github.com/ndv6/app-sdk
+module github.com/koala-proptech/app-sdk
 
 go 1.12
 
